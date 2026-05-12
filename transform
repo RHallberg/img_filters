@@ -1,0 +1,11 @@
+#!/bin/sh
+
+file=$(echo "$1" | sed 's/\.png//')
+transformer=${2:-base}
+
+png2ff < "$file.png" \
+  | xxd -p -c 8  \
+  | sed -E 's/([a-z0-9]{4})/\1 /g' \
+  | awk -Wposix -f "$transformer.awk" \
+  | xxd -p -r -c 8 \
+  | ff2png > "$file.out.png"
