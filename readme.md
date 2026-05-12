@@ -3,7 +3,9 @@ Simple awk image filter that takes farbfeld image and converts them pixel by pix
 
 ## Usage
 
-`./transform your_image.png filter_name`
+```bash
+./transform your_image.png filter_name
+```
 
 resulting image is suffixed with .out.png
 
