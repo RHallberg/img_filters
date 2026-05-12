@@ -1,3 +1,6 @@
+BEGIN {
+  MAX_COLOR = 65535
+}
 function to_dec(v)
 {
   return sprintf("%d", "0x" v)
@@ -6,7 +9,7 @@ function to_dec(v)
 function clamp(v)
 {
   if (v < 0)      return 0
-  if (v > 65535) return 65535
+  if (v > MAX_COLOR) return MAX_COLOR
   return int(v)
 }
 
@@ -24,8 +27,8 @@ NR == 2 {
 # VARIABLES
 {
   red = to_dec($1)
-  blue = to_dec($2)
-  green = to_dec($3)
+  green = to_dec($2)
+  blue = to_dec($3)
   alpha = to_dec($4)
 
 }

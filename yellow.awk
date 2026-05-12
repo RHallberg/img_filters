@@ -24,10 +24,9 @@ NR == 2 {
 # VARIABLES
 {
   red = to_dec($1)
-  blue = to_dec($2)
-  green = to_dec($3)
+  green = to_dec($2)
+  blue = to_dec($3)
   alpha = to_dec($4)
-
 }
 
 {
