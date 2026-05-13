@@ -26,11 +26,14 @@ NR == 2 {
 
 # VARIABLES
 {
-  red = to_dec($1)
+  red   = to_dec($1)
   green = to_dec($2)
-  blue = to_dec($3)
+  blue  = to_dec($3)
   alpha = to_dec($4)
 
+  pixel = NR - 3
+  col   = pixel % WIDTH
+  row   = int(pixel / WIDTH)
 }
 
 {
