@@ -1,7 +1,7 @@
 #!/bin/sh
 
 file=$(echo "$1" | sed 's/\.png//')
-transformer=${2:-base}
+transformer=$(echo ${2:-base} | sed 's/\.awk//')
 
 png2ff < "$file.png" \
   | xxd -p -c 8  \
