@@ -41,7 +41,7 @@ NR % 4 == 0 {
 }
 
 NR % (int(rand() * 4) +1 ) == 0 {
-  red = clamp(red * int(rand()))
+  red = clamp(red * int(rand()) * 5)
   blue = clamp(blue * int(rand()))
   green = clamp(green * int(rand()))
 }

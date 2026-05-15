@@ -1,11 +1,26 @@
 #!/bin/sh
 
-file=$(echo "$1" | sed 's/\.png//')
+
+file="$1"
 transformer=$(echo ${2:-base} | sed 's/\.awk//')
 
-png2ff < "$file.png" \
+if file "$file" | grep -qi png; then
+  filetype="png"
+  cmd1="png2ff"
+  cmd2="ff2png"
+elif file "$file" | grep -qi jpeg; then
+  filetype="jpg"
+  cmd1="jpg2ff"
+  cmd2="ff2jpg"
+else
+  exit
+fi
+
+outfile=$(echo "$file" | sed "s/\.$filename/_out\.$filename/")
+
+$cmd1 < "$file" \
   | xxd -p -c 8  \
   | sed -E 's/([a-z0-9]{4})/\1 /g' \
   | awk -Wposix -f "$transformer.awk" \
   | xxd -p -r -c 8 \
-  | ff2png > "$file.out.png"
+  | $cmd2 > "$outfile"
